@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IVAO XO Sector Explorer</title>
+
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div id="sidebar">
+
+    <div id="logo">
+
+        <h1>IVAO XO</h1>
+        <h2>Sector Explorer</h2>
+
+    </div>
+
+    <div id="searchWrap">
+
+        <input
+            id="search"
+            type="text"
+            placeholder="Search sector...">
+
+        <div id="searchResults"></div>
+
+    </div>
+
+    <div id="filters" class="filterBox">
+
+        <h3>Filters</h3>
+
+        <label><input type="checkbox" checked id="upper"> Upper CTR</label><br>
+        <label><input type="checkbox" checked id="lower"> Lower CTR</label><br>
+        <label><input type="checkbox" checked id="app"> APP</label><br>
+        <label><input type="checkbox" checked id="tcu"> TCU</label><br>
+        <label><input type="checkbox" checked id="oceanic"> Oceanic</label>
+
+    </div>
+
+    <div id="firFilters" class="filterBox">
+
+        <h3>FIRs</h3>
+
+        <label><input type="checkbox" checked id="fir-AYPM"> AYPM</label><br>
+        <label><input type="checkbox" checked id="fir-YBBB"> YBBB</label><br>
+        <label><input type="checkbox" checked id="fir-YMMM"> YMMM</label><br>
+        <label><input type="checkbox" checked id="fir-NZZC"> NZZC</label><br>
+        <label><input type="checkbox" checked id="fir-NZZO"> NZZO</label><br>
+        <label><input type="checkbox" checked id="fir-YMMO"> YMMO</label>
+
+    </div>
+
+    <hr>
+
+    <div id="sectorInfo">
+
+        <h2>No Sector Selected</h2>
+
+        <p>Click on a sector.</p>
+
+    </div>
+
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
