@@ -25,19 +25,16 @@ body {
 #logo {
     text-align: center;
     margin-bottom: 25px;
+    background: white;
+    border-radius: 10px;
+    padding: 14px 10px;
 }
 
-#logo h1 {
-    margin: 0;
-    font-size: 28px;
-    letter-spacing: 1px;
-}
-
-#logo h2 {
-    margin: 0;
-    font-size: 18px;
-    font-weight: normal;
-    color: #d8d8d8;
+#logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
 }
 
 #searchWrap {

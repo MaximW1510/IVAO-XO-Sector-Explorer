@@ -21,6 +21,31 @@ L.tileLayer(
 
 
 // ----------------------
+// OpenAIP (Lufträume) – optionaler Overlay-Layer
+// ----------------------
+
+const OPENAIP_API_KEY = "7cd99524162f7df784cb7b21a299a3fa";
+
+// Eigenes Pane mit hoehrem z-Index, damit die OpenAIP-Linien ueber den
+// (halbtransparenten) Sektor-Flaechen sichtbar sind, statt darunter zu liegen
+map.createPane("openAipPane");
+map.getPane("openAipPane").style.zIndex = 450;
+map.getPane("openAipPane").style.pointerEvents = "none";
+
+const openAipLayer = L.tileLayer(
+  "https://{s}.api.tiles.openaip.net/api/data/openaip/{z}/{x}/{y}.png?apiKey=" + OPENAIP_API_KEY,
+  {
+    pane: "openAipPane",
+    subdomains: "abc",
+    minZoom: 7,
+    maxNativeZoom: 16,
+    maxZoom: 19,
+    attribution: '<a href="https://www.openaip.net/">openAIP Data</a> (CC BY-NC 4.0)'
+  }
+);
+
+
+// ----------------------
 // FIR Colours
 // ----------------------
 
@@ -50,7 +75,7 @@ let selectedEntry = null;
 let sectorMarkers = [];
 
 // Reihenfolge der Kategorien: Upper zuerst (unten), dann Lower (oben)
-const CATEGORY_ORDER = ['upper', 'lower', 'app', 'tcu', 'oceanic'];
+const CATEGORY_ORDER = ['upper', 'lower', 'app', 'oceanic'];
 
 // Verfügbare FIRs für den FIR-Filter
 const FIR_LIST = ['AYPM', 'YBBB', 'YMMM', 'NZZC', 'NZZO', 'YMMO'];
@@ -68,7 +93,6 @@ function getCategory(props) {
     return level === "UPPER" ? "upper" : "lower";
   }
   if (type === "APP") return "app";
-  if (type === "TCU") return "tcu";
   if (type === "OCEANIC" || type === "OCA") return "oceanic";
   return "lower";
 }
@@ -498,6 +522,17 @@ function createFilters() {
     const checkbox = document.getElementById("fir-" + fir);
     if (checkbox) checkbox.addEventListener("change", applyFilters);
   });
+
+  const aipCheckbox = document.getElementById("openaip");
+  if (aipCheckbox) {
+    aipCheckbox.addEventListener("change", () => {
+      if (aipCheckbox.checked) {
+        openAipLayer.addTo(map);
+      } else {
+        map.removeLayer(openAipLayer);
+      }
+    });
+  }
 }
 
 
